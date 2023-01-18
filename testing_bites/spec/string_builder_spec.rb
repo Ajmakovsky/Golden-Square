@@ -16,17 +16,23 @@ describe StringBuilder do
   end
 
   context "given an additional string" do
+
+    before(:each) do 
+      @test = StringBuilder.new
+      @string = @test.add("Hello")
+    end
+
     it "outputs a string" do
-      string = StringBuilder.new
-      string.add("Hello")
-      result = string.output
+      #string = StringBuilder.new
+      #string.add("Hello")
+      result = @test.output
       expect(result).to eq "Hello"
     end
 
     it "outputs the length of the string" do
-      string = StringBuilder.new
-      string.add("Hello")
-      result = string.size
+      #string = StringBuilder.new
+      #string.add("Hello")
+      result = @string.size
       expect(result).to eq 5
     end
   end
