@@ -15,10 +15,14 @@ describe DiaryEntry do
     it "Returns an integer representing an estimate of the reading time in minutes for the contents at the given wpm." do
         diary_entry1 = DiaryEntry.new("Today","Good day " * 10)
         expect(diary_entry1.reading_time(1)).to eq 20
+        expect(diary_entry1.reading_time(10)).to eq 2
     end
 
     it "Returns a chunk of text based on WPM and available minutes." do
       diary_entry1 = DiaryEntry.new("Today","Lorem Ipsum is simply dummy text of the printing and typesetting industry")
+      expect(diary_entry1.reading_chunk(2,2)).to eq "Lorem Ipsum is simply"
+      expect(diary_entry1.reading_chunk(2,2)).to eq "dummy text of the"
+      expect(diary_entry1.reading_chunk(2,2)).to eq "printing and typesetting industry"
       expect(diary_entry1.reading_chunk(2,2)).to eq "Lorem Ipsum is simply"
     end
 end
