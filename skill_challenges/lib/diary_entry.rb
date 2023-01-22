@@ -2,7 +2,7 @@ class DiaryEntry
   def initialize(title, contents) # title, contents are strings
     @title = title
     @contents = contents
-    @starting_index = 0 
+    @current_starting_index = 0
   end
 
   def title
@@ -24,18 +24,21 @@ class DiaryEntry
   end
 
   def reading_chunk(wpm, minutes) 
-    contents_arr = @contents.split
-    total_words = wpm * minutes
+    contents_array = @contents.split
+    total_words = wpm * minutes #(ex. 2*2 = 4)
+    #p total_words
 
-    #starting_index = @starting_index
-    ending_index = @starting_index + total_words 
-
-    @starting_index = 0 if (@starting_index + total_words) > contents_arr.length 
-
-    text_chunk = contents_arr[@starting_index,total_words].join(" ")
-      @starting_index = ending_index
+    start_index = @current_starting_index
+    ending_index = start_index + total_words
+    if ending_index < contents_array.length 
+      text_chunk = contents_array[start_index,total_words].join(" ")
+      @current_starting_index += total_words
       return text_chunk
-    
+    else
+      text_chunk = contents_array[start_index..(ending_index - 1)].join(" ")
+      @current_starting_index = 0
+      return text_chunk
+    end
 
       # `wpm` is an integer representing the number
       # of words the user can read per minute
@@ -49,7 +52,6 @@ class DiaryEntry
   end
 end
 
-#diary_entry1 = DiaryEntry.new("Today","Lorem Ipsum is simply dummy text of the printing and typesetting industry")
-#puts diary_entry1.reading_chunk(2,2)
-#puts diary_entry1.reading_chunk(2,2)
+
+
 

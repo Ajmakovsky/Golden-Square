@@ -19,10 +19,12 @@ describe DiaryEntry do
     end
 
     it "Returns a chunk of text based on WPM and available minutes." do
-      diary_entry1 = DiaryEntry.new("Today","Lorem Ipsum is simply dummy text of the printing and typesetting industry")
-      expect(diary_entry1.reading_chunk(2,2)).to eq "Lorem Ipsum is simply"
-      expect(diary_entry1.reading_chunk(2,2)).to eq "dummy text of the"
-      expect(diary_entry1.reading_chunk(2,2)).to eq "printing and typesetting industry"
-      expect(diary_entry1.reading_chunk(2,2)).to eq "Lorem Ipsum is simply"
+      diary_entry = DiaryEntry.new("Today","Lorem Ipsum is simply dummy text of the printing and typesetting industry")
+      expect(diary_entry.reading_chunk(2,2)).to eq "Lorem Ipsum is simply"
+      expect(diary_entry.reading_chunk(2,1)).to eq "dummy text"
+      expect(diary_entry.reading_chunk(2,3)).to eq "of the printing and typesetting industry"
+      expect(diary_entry.reading_chunk(2,2)).to eq "Lorem Ipsum is simply"
+      expect(diary_entry.reading_chunk(2,6)).to eq "dummy text of the printing and typesetting industry"
+      expect(diary_entry.reading_chunk(2,2)).to eq "Lorem Ipsum is simply"
     end
 end
