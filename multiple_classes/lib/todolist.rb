@@ -10,7 +10,6 @@ class TodoList
   end
 
   def incomplete
-
     @todo_list.delete_if { |todo| todo == true}
 
 
