@@ -1,3 +1,5 @@
+require 'diary_entry'
+
 class Diary
   def initialize
   @diary = []

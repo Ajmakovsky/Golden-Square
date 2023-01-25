@@ -1,5 +1,5 @@
 require 'todo'
-require 'todo_list'
+require 'todolist'
 
 RSpec.describe 'integration' do 
   it 'returns an empty string when no task has been added' do
@@ -19,6 +19,16 @@ RSpec.describe 'integration' do
     todo1 = Todo.new("Laundry")
     todo1.mark_done!
     todolist.add(todo1)
+    expect(todolist.complete).to eq [todo1]
+  end
+
+  it 'returns all complete todos' do
+    todo1 = Todo.new("Laundry")
+    todo2 = Todo.new("Call friends")
+    todolist = TodoList.new
+    todolist.add(todo1)
+    todolist.add(todo2)
+    todo1.mark_done!
     expect(todolist.complete).to eq [todo1]
   end
 

@@ -10,7 +10,7 @@ class TodoList
   end
 
   def incomplete
-    @todo_list.delete_if { |todo| todo == true}
+    @todo_list.delete_if { |todo| todo.done? }
 
 
     # @todo_list.each do |todo|
@@ -22,7 +22,7 @@ class TodoList
 
   def complete
    
-    @todo_list.delete_if { |todo| todo == false}
+    @todo_list.delete_if { |todo| todo.done? == false }
     # @todo_list.each do |todo|
     #   if todo.done? == true
     #   return todo
