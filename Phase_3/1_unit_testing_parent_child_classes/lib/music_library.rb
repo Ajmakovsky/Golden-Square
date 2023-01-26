@@ -1,4 +1,4 @@
-require 'track'
+#require 'track'
 
 
 class MusicLibrary
@@ -19,10 +19,7 @@ class MusicLibrary
   
   def search(keyword) # keyword is a string
     # Returns a list of tracks that match the keyword
-
+    @all_tracks.filter { |track| track.matches?(keyword) }
 
   end
 end
-
-track_list = MusicLibrary.new
-puts track_list.all
