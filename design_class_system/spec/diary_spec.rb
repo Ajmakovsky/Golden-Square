@@ -81,5 +81,13 @@ RSpec.describe 'Integration' do
     expect(diary.extract_phone_numbers).to eq [["07800000000", "07800000001"], ["07800000003"], ["07800000004"]]
   end 
 
+  it "returns a list of incomplete todos" do 
+      diary = Diary.new
+      todolist = TodoList.new
+      todo1 = Todo.new("Laundry")
+      todo1.mark_done!
+      todolist.add(todo1)
+      expect(todolist.complete).to eq [todo1]
+    end
 
 end   

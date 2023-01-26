@@ -36,44 +36,6 @@ _Consider diagramming out the classes and their relationships. Take care to
 focus on the details you see as important, not everything. The diagram below
 uses asciiflow.com but you could also use excalidraw.com, draw.io, or miro.com_
 
-┌────────────────────────────────────────────────────────────────────────┐
-│Diary                                                                   │
-│- add diary entries into the diary                                      │
-│- be able to check length of an entry                                   │
-│- be able to filter entries based on available time and reading speed   │
-│- access/hold the ongoing todo list                                     │
-│- be able to search diary entries for phone numbers                     │
-│- keep a running list of phone numbers                                  │
-└────────────────────────────────────────────────────────────────────────┘
-                                                               ▲              
- ┌───────────────────────────────────────────────┐             │             
- │Diary Entries                                  │             │          
- │- take in a new entry (contents and title)     | ----------- │
- │- calculate length of entries                  │            
- └───────────────────────────────────────────────┘             │
-                                                               │
-                                                               │
-                                                               │
- ┌─────────────────────────────────────┐                       │
- │Todo list                            │                       │
- │- store a list of individiual tasks  ├───────────────────────┘
- │                                     │
- └─────────────────────────────────────┘
-                                ▲
-                                │
-                                │
- ┌──────────────────────────────┴──────┐
- │Todo                                 │
- │- initialize a new todo              │
- │                                     │
- └─────────────────────────────────────┘
-                                                               ▲
- ┌────────────────────────────────────────────────┐            |
- │PhoneNumberFinder                               │            |
- │- searches diary entries for mobile numbers     │------------┘
- │- stores all phone numbers to be accessed later │
- └────────────────────────────────────────────────┘
-
 ```ruby
 class Diary 
   def initialize
@@ -92,7 +54,9 @@ class Diary
   #returns todo list
   end 
 
-  def show_numbers
+  def extract_phone_numbers
+  # runs extract phone number method from diary_entry class 
+  # returns all phone numbers within the diary 
   end 
 end
 
@@ -100,17 +64,23 @@ class DiaryEntry
   def initialize(title, contents)
   end
 
+  def title 
+   # returns title
+  end 
+
+  def contents 
+   # returns contents
+  end 
+
   def count_words
   end 
-end
 
-class PhoneNumberFinder
-  def extract
+  def extract_phone_number
+  # returns any phone numbers from that entry
   end 
 
-  def numbers_list
-  end
 end
+
 
 class TodoList
   def initialize
@@ -119,14 +89,31 @@ class TodoList
   def add(todo)
   end
 
-  def show_list
-  # returns list of todos
+  def incomplete
+  #returns a list of incomplete todos
   end 
+
+  def complete
+  # returns a list of complete todos
+  end 
+   
 end
 
 class Todo
-  def initialize
+  def initialize(task)
   end
+
+  def task
+  #returns the task 
+  end 
+
+  def mark_done!
+  # marks the task as done 
+  end 
+
+  def done?
+  # returns true if the task is done
+  end 
 end
 
 

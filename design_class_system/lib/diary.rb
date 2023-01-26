@@ -1,4 +1,5 @@
 require 'diary_entry'
+require 'todo_list'
 
 class Diary
   def initialize
@@ -17,6 +18,10 @@ class Diary
     @diary.sum(&:count_words)
 
   end
+
+  def todo_list
+    return TodoList.incomplete
+  end 
 
   def reading_time(wpm)
     return count_words / wpm.to_f.ceil

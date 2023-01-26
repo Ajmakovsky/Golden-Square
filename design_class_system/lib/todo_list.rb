@@ -11,12 +11,22 @@ class TodoList
     # Returns nothing
   end
 
+ 
+
   def incomplete
-    @todo_list.delete_if { |todo| todo == true}
+    @todo_list.reject { |todo| todo.done? }
   end
 
   def complete
-    @todo_list.delete_if { |todo| todo == false}
+    # @todo_list.select do |todo| 
+    #   todo.done?
+    # end
+    @todo_list.each do |todo|
+      if todo(&:done?) == true
+        return todo
+      end 
+    return @todo_list
+    end  
   end
 
   def give_up!

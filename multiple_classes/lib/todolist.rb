@@ -4,13 +4,13 @@ class TodoList
   end
 
   def add(todo) 
-    @todo_list.push(todo)
+    @todo_list << todo
     # todo is an instance of Todo
     # Returns nothing
   end
 
   def incomplete
-    @todo_list.delete_if { |todo| todo.done? }
+    @todo_list.filter { |todo| !todo.done? }
 
 
     # @todo_list.each do |todo|
@@ -21,8 +21,8 @@ class TodoList
   end
 
   def complete
-   
-    @todo_list.delete_if { |todo| todo.done? == false }
+  
+    @todo_list.filter{ |todo| todo.done? }
     # @todo_list.each do |todo|
     #   if todo.done? == true
     #   return todo
@@ -32,9 +32,11 @@ class TodoList
   end
 
   def give_up!
-    @todo_list.each do |todo|
-    todo.mark_done!
-    end
+
+    @todo_list.each  { |todo| todo.mark_done! }
+    # @todo_list.each do |todo|
+    # todo.mark_done!
+    # end
     # Marks all todos as complete
   end
 end
